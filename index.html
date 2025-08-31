@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Solar vs Utility Savings Calculator</title>
+  <link rel="stylesheet" href="style.css">
+  <!-- Custom script to perform calculations and draw charts -->
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <header>
+    <h1>Solar Savings Calculator</h1>
+    <p>See how switching to solar can reduce your electricity costs over time.</p>
+    <!-- Utility logos for local Maine utilities -->
+    <div class="utility-logos">
+      <img src="versant.png" alt="Versant Power logo" />
+      <img src="cmp.png" alt="Central Maine Power logo" />
+    </div>
+  </header>
+  <main>
+    <section class="input-panel">
+      <div class="form-group">
+        <label for="bill">Average monthly utility bill ($)</label>
+        <input type="number" id="bill" min="0" step="0.01" value="150" />
+      </div>
+      <div class="form-group">
+        <label for="solarPayment">Monthly solar payment ($)</label>
+        <input type="number" id="solarPayment" min="0" step="0.01" value="100" />
+      </div>
+      <div class="form-group">
+        <label for="yearsRange">Timeline (years): <span id="yearsDisplay">25</span></label>
+        <!-- Slider ranges from 1 to 30 years -->
+        <input type="range" id="yearsRange" min="1" max="30" step="1" value="25" />
+      </div>
+      <!-- Utility rate is fixed at 9% and no longer editable -->
+      <div class="form-group">
+        <label>Solar escalator (PPA/lease rate increase)</label>
+        <select id="solarEscalator">
+          <option value="0">0% (Fixed)</option>
+          <option value="2.99">2.99% per year</option>
+          <option value="3.59">3.59% per year</option>
+        </select>
+      </div>
+    </section>
+    <section class="results">
+      <div class="totals">
+        <div class="result-card">
+          <h3>Total Utility Cost</h3>
+          <p id="totalUtility">$0</p>
+        </div>
+        <div class="result-card">
+          <h3>Total Solar Cost</h3>
+          <p id="totalSolar">$0</p>
+        </div>
+        <div class="result-card difference">
+          <h3>You Save</h3>
+          <p id="savings">$0</p>
+        </div>
+      </div>
+      <!-- Current year breakdown shows monthly costs and savings at the selected year -->
+      <div class="year-details">
+        <h3>Yearly Snapshot</h3>
+        <p id="yearlyDetails">Select a timeline to view annual costs.</p>
+      </div>
+      <canvas id="costChart"></canvas>
+    </section>
+    <section class="notes">
+      <h2>How these estimates work</h2>
+      <p>This calculator shows how your electricity expenses can grow over time when staying with your current utility versus switching to solar. We assume your starting utility bill and solar payment remain constant, then apply an annual rate increase (escalator) to both.</p>
+      <ul>
+        <li>The calculator assumes your utility rates will increase by <strong>9% per year</strong> based on recent rate adjustments approved for Maine utilities. This value is fixed and cannot be changed.</li>
+        <li>Solar power purchase agreements (PPA) often include annual escalators. Many providers offer fixed-rate (0%), or escalators around 2.99% or 3.59% per year. Choose the solar escalator that matches your proposal.</li>
+        <li>Use the slider to adjust the timeline from 1 to 30 years.</li>
+      </ul>
+      <p><em>These results are estimates and do not account for tax incentives, system degradation, maintenance costs, or potential energy production offsets. Consult a solar professional for a detailed analysis.</em></p>
+    </section>
+  </main>
+  <footer>
+    <p>© 2025 Solar Savings Calculator</p>
+  </footer>
+</body>
+</html>
